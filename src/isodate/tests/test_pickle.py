@@ -1,6 +1,6 @@
 import unittest
 
-from six.moves import cPickle as pickle
+import pickle
 
 import isodate
 
