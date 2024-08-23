@@ -38,7 +38,7 @@ from isodate.isostrf import DATE_EXT_COMPLETE, TIME_EXT_COMPLETE, TZ_EXT, strfti
 from isodate.isotime import parse_time
 
 
-def parse_datetime(datetimestring):
+def parse_datetime(datetimestring: str) -> dt.datetime:
     """
     Parses ISO 8601 date-times into datetime.datetime objects.
 
@@ -59,7 +59,7 @@ def parse_datetime(datetimestring):
 
 
 def datetime_isoformat(
-    tdt, format=DATE_EXT_COMPLETE + "T" + TIME_EXT_COMPLETE + TZ_EXT
+    tdt: datetime, format: str=DATE_EXT_COMPLETE + "T" + TIME_EXT_COMPLETE + TZ_EXT
 ):
     """
     Format datetime strings.
