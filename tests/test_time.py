@@ -27,6 +27,7 @@
 """
 Test cases for the isotime module.
 """
+
 from datetime import time
 
 import pytest
