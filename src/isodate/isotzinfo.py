@@ -29,6 +29,7 @@ This module provides an ISO 8601:2004 time zone info parser.
 
 It offers a function to parse the time zone offset as specified by ISO 8601.
 """
+
 import re
 
 from isodate.isoerror import ISO8601Error
