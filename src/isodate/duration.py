@@ -33,11 +33,11 @@ used as limited replacement for timedelta objects.
 from __future__ import annotations
 from datetime import timedelta
 from decimal import ROUND_FLOOR, Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypeVar
 
 if TYPE_CHECKING:
     from datetime import date, datetime
-    from typing import Mapping, TypeVar
+    from typing import Mapping
 
 _TEMPORALT = TypeVar("_TEMPORALT", Duration, timedelta, date, datetime)
 _DATET = TypeVar("_DATET", date, datetime)
