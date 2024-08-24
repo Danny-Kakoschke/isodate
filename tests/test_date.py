@@ -27,6 +27,7 @@
 """
 Test cases for the isodate module.
 """
+
 from datetime import date
 
 import pytest
