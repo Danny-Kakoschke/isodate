@@ -41,10 +41,9 @@ if TYPE_CHECKING:
     _TEMPORALT = TypeVar("_TEMPORALT", "Duration", timedelta, date, datetime)
     _DATET = TypeVar("_DATET", date, datetime)
 
-def fquotmod(val: Decimal, low: Decimal, high: Decimal) -> tuple[int, Decimal]:
+def fquotmod(val: Decimal, low: int, high: int) -> tuple[int, Decimal]:
     """
-    A divmod function with boundaries.
-
+    A divmod function with boundaries
     """
     # assumes that all the maths is done with Decimals.
     # divmod for Decimal uses truncate instead of floor as builtin
