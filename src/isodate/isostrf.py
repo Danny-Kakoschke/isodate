@@ -36,6 +36,7 @@ conforming strings.
 
 import re
 from datetime import date, time, timedelta
+from typing import Callable
 
 from isodate.duration import Duration
 from isodate.isotzinfo import tz_isoformat
