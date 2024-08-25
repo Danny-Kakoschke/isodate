@@ -35,7 +35,7 @@ conforming strings.
 """
 
 import re
-from datetime import date, time, timedelta
+from datetime import date, datetime, time, timedelta
 from typing import Callable
 
 from isodate.duration import Duration
