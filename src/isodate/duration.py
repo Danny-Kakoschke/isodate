@@ -221,7 +221,7 @@ class Duration(timedelta):
 
     __radd__ = __add__
 
-    def __mul__(self, other: int) -> Duration:
+    def __mul__(self, other: float) -> Duration:
         if isinstance(other, int):
             newduration = Duration(
                 years=self.years * other,
