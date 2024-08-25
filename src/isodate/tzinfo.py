@@ -38,7 +38,7 @@ class Utc(tzinfo):
         """
         return ZERO
 
-    def __reduce__(self) -> tuple[Callable[[], UTC], tuple[()]]:
+    def __reduce__(self) -> tuple[Callable[[], Utc], tuple[()]]:
         """
         When unpickling a Utc object, return the default instance below, UTC.
         """
