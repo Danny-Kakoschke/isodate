@@ -41,14 +41,14 @@ from datetime import date, timedelta
 from isodate.isoerror import ISO8601Error
 from isodate.isostrf import DATE_EXT_COMPLETE, strftime
 
-DATE_REGEX_CACHE: dict[tuple[int, bool], list[re.Pattern]] = {}
+DATE_REGEX_CACHE: dict[tuple[int, bool], list[re.Pattern[str]]] = {}
 # A dictionary to cache pre-compiled regular expressions.
 # A set of regular expressions is identified, by number of year digits allowed
 # and whether a plus/minus sign is required or not. (This option is changeable
 # only for 4 digit years).
 
 
-def build_date_regexps(yeardigits: int=4, expanded: bool=False) -> list[re.Pattern]:
+def build_date_regexps(yeardigits: int=4, expanded: bool=False) -> list[re.Pattern[str]]:
     """
     Compile set of regular expressions to parse ISO dates. The expressions will
     be created only if they are not already in REGEX_CACHE.
