@@ -6,6 +6,7 @@ All those classes are taken from the Python documentation.
 
 import time
 from datetime import datetime, timedelta, tzinfo
+from typing import Callable
 
 ZERO = timedelta(0)
 # constant for zero time offset.
@@ -17,20 +18,20 @@ class Utc(tzinfo):
     Universal time coordinated time zone.
     """
 
-    def utcoffset(self, dt: datetime):
+    def utcoffset(self, dt: datetime | None):
         """
         Return offset from UTC in minutes east of UTC, which is ZERO for UTC.
         """
         return ZERO
 
-    def tzname(self, dt: datetime):
+    def tzname(self, dt: datetime | None):
         """
         Return the time zone name corresponding to the datetime object dt,
         as a string.
         """
         return "UTC"
 
-    def dst(self, dt: datetime):
+    def dst(self, dt: datetime | None):
         """
         Return the daylight saving time (DST) adjustment, in minutes east
         of UTC.
@@ -72,20 +73,20 @@ class FixedOffset(tzinfo):
         self.__offset: timedelta = timedelta(hours=offset_hours, minutes=offset_minutes)
         self.__name: str = name
 
-    def utcoffset(self, dt: datetime) -> timedelta:
+    def utcoffset(self, dt: datetime | None) -> timedelta:
         """
         Return offset from UTC in minutes of UTC.
         """
         return self.__offset
 
-    def tzname(self, dt: datetime) -> str:
+    def tzname(self, dt: datetime | None) -> str:
         """
         Return the time zone name corresponding to the datetime object dt, as a
         string.
         """
         return self.__name
 
-    def dst(self, dt: datetime) -> timedelta:
+    def dst(self, dt: datetime | None) -> timedelta:
         """
         Return the daylight saving time (DST) adjustment, in minutes east of
         UTC.
