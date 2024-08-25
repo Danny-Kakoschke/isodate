@@ -57,7 +57,7 @@ def fquotmod(val: Decimal, low: int, high: int) -> tuple[int, Decimal]:
     return int(div), mod
 
 
-def max_days_in_month(year: int, month: int) -> int:
+def max_days_in_month(year: Decimal | int, month: Decimal | int) -> int:
     """
     Determines the number of days of a specific month in a specific year.
     """
