@@ -30,6 +30,7 @@ This module defines a Duration class.
 The class Duration allows to define durations in years and months and can be
 used as limited replacement for timedelta objects.
 """
+
 from datetime import timedelta
 from decimal import ROUND_FLOOR, Decimal
 
