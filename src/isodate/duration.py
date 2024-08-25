@@ -122,7 +122,7 @@ class Duration:
     def __getstate__(self) -> dict[str, object]:
         return self.__dict__
 
-    def __setstate__(self, state: Mapping) -> None:
+    def __setstate__(self, state: Mapping[object, object]) -> None:
         self.__dict__.update(state)
 
     def __getattr__(self, name) -> object:
@@ -177,7 +177,7 @@ class Duration:
         negduration.tdelta = -self.tdelta
         return negduration
 
-    def __add__(self, other: _TRNPORALT) -> _TEMPORALT:
+    def __add__(self, other: _TEMPORALT) -> _TEMPORALT:
         """
         Durations can be added with Duration, timedelta, date and datetime
         objects.
