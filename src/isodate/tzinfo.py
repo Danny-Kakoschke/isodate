@@ -118,7 +118,7 @@ class LocalTimezone(tzinfo):
     A class capturing the platform's idea of local time.
     """
 
-    def utcoffset(self, dt: datetime | None) -> timedelta:
+    def utcoffset(self, dt: datetime) -> timedelta:
         """
         Return offset from UTC in minutes of UTC.
         """
@@ -127,7 +127,7 @@ class LocalTimezone(tzinfo):
         else:
             return STDOFFSET
 
-    def dst(self, dt: datetime | None) -> timedelta:
+    def dst(self, dt: datetime) -> timedelta:
         """
         Return daylight saving offset.
         """
@@ -136,7 +136,7 @@ class LocalTimezone(tzinfo):
         else:
             return ZERO
 
-    def tzname(self, dt: datetime | None) -> str:
+    def tzname(self, dt: datetime) -> str:
         """
         Return the time zone name corresponding to the datetime object dt, as a
         string.
