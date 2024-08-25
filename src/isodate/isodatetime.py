@@ -62,8 +62,9 @@ def parse_datetime(datetimestring: str) -> datetime:
 
 
 def datetime_isoformat(
-    tdt: datetime, format: str=DATE_EXT_COMPLETE + "T" + TIME_EXT_COMPLETE + TZ_EXT
-):
+    tdt: datetime,
+    format: str=DATE_EXT_COMPLETE + "T" + TIME_EXT_COMPLETE + TZ_EXT
+) -> str:
     """
     Format datetime strings.
 
