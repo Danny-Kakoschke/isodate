@@ -1,4 +1,4 @@
-##############################################################################
+ ##############################################################################
 # Copyright 2009, Gerhard Weis
 # All rights reserved.
 #
@@ -71,7 +71,7 @@ def max_days_in_month(year: int, month: int) -> int:
     return 28
 
 
-class Duration:
+class Duration(timedelta):
     """
     A class which represents a duration.
 
@@ -122,10 +122,10 @@ class Duration:
     def __getstate__(self) -> dict[str, object]:
         return self.__dict__
 
-    def __setstate__(self, state: Mapping[object, object]) -> None:
+    def __setstate__(self, state: Mapping[str, object]) -> None:
         self.__dict__.update(state)
 
-    def __getattr__(self, name) -> object:
+    def __getattr__(self, name: str) -> object:
         """
         Provide direct access to attributes of included timedelta instance.
         """
