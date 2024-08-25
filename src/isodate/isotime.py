@@ -42,11 +42,11 @@ from isodate.isoerror import ISO8601Error
 from isodate.isostrf import TIME_EXT_COMPLETE, TZ_EXT, strftime
 from isodate.isotzinfo import TZ_REGEX, build_tzinfo
 
-TIME_REGEX_CACHE: list[re.Pattern] = []
+TIME_REGEX_CACHE: list[re.Pattern[str]] = []
 # used to cache regular expressions to parse ISO time strings.
 
 
-def build_time_regexps() -> list[re.Pattern]:
+def build_time_regexps() -> list[re.Pattern[str]]:
     """
     Build regular expressions to parse ISO time string.
 
