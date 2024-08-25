@@ -32,6 +32,8 @@ It supports all basic and extended formats including time zone specifications
 as described in the ISO standard.
 """
 
+from __future__ import annotations
+
 import re
 from datetime import time
 from decimal import Decimal
@@ -40,11 +42,11 @@ from isodate.isoerror import ISO8601Error
 from isodate.isostrf import TIME_EXT_COMPLETE, TZ_EXT, strftime
 from isodate.isotzinfo import TZ_REGEX, build_tzinfo
 
-TIME_REGEX_CACHE = []
+TIME_REGEX_CACHE: list[re.Pattern] = []
 # used to cache regular expressions to parse ISO time strings.
 
 
-def build_time_regexps():
+def build_time_regexps() -> list[re.pattern]:
     """
     Build regular expressions to parse ISO time string.
 
@@ -111,7 +113,7 @@ def build_time_regexps():
     return TIME_REGEX_CACHE
 
 
-def parse_time(timestring):
+def parse_time(timestring: str) -> time:
     """
     Parses ISO 8601 times into datetime.time objects.
 
@@ -183,7 +185,7 @@ def parse_time(timestring):
     raise ISO8601Error("Unrecognised ISO 8601 time format: %r" % timestring)
 
 
-def time_isoformat(ttime, format=TIME_EXT_COMPLETE + TZ_EXT):
+def time_isoformat(ttime: time, format: str=TIME_EXT_COMPLETE + TZ_EXT) -> str:
     """
     Format time strings.
 
