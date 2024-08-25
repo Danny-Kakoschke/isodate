@@ -83,7 +83,7 @@ D_ALT_BAS = "P" + DATE_BAS_COMPLETE + "T" + TIME_BAS_COMPLETE
 D_ALT_EXT_ORD = "P" + DATE_EXT_ORD_COMPLETE + "T" + TIME_EXT_COMPLETE
 D_ALT_BAS_ORD = "P" + DATE_BAS_ORD_COMPLETE + "T" + TIME_BAS_COMPLETE
 
-STRF_DT_MAP: dict[str, Callable[[date | time, int], str]] = {
+STRF_DT_MAP: dict[str, Callable[[date | time | datetime, int], str]] = {
     "%d": lambda tdt, yds: "%02d" % tdt.day,
     "%f": lambda tdt, yds: "%06d" % tdt.microsecond,
     "%H": lambda tdt, yds: "%02d" % tdt.hour,
