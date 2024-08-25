@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import re
 
-from datetime import tzinfo
+from datetime import datetime, tzinfo
 from isodate.isoerror import ISO8601Error
 from isodate.tzinfo import UTC, ZERO, FixedOffset
 
@@ -47,7 +47,7 @@ TZ_REGEX = (
 TZ_RE = re.compile(TZ_REGEX)
 
 
-def build_tzinfo(tzname: str | None, tzsign: Literal["+", "-"]="+", tzhour: int=0, tzmin: int=0) -> tzinfo:
+def build_tzinfo(tzname: str | None, tzsign: str | Literal["+", "-"]="+", tzhour: int=0, tzmin: int=0) -> tzinfo | None:
     """
     create a tzinfo instance according to given parameters.
 
@@ -60,8 +60,8 @@ def build_tzinfo(tzname: str | None, tzsign: Literal["+", "-"]="+", tzhour: int=
         return None
     if tzname == "Z":
         return UTC
-    tzsign = ((tzsign == "-") and -1) or 1
-    return FixedOffset(tzsign * tzhour, tzsign * tzmin, tzname)
+    _tzsign = ((tzsign == "-") and -1) or 1
+    return FixedOffset(_tzsign * tzhour, _tzsign * tzmin, tzname)
 
 
 def parse_tzinfo(tzstring: str) -> tzinfo:
