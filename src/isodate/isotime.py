@@ -46,7 +46,7 @@ TIME_REGEX_CACHE: list[re.Pattern] = []
 # used to cache regular expressions to parse ISO time strings.
 
 
-def build_time_regexps() -> list[re.pattern]:
+def build_time_regexps() -> list[re.Pattern]:
     """
     Build regular expressions to parse ISO time string.
 
@@ -145,6 +145,9 @@ def parse_time(timestring: str) -> time:
                 int(groups["tzhour"] or 0),
                 int(groups["tzmin"] or 0),
             )
+            minute: int | Decimal
+            second: int | Decimal
+            microsecond: int | Decimal
             if "second" in groups:
                 # round to microseconds if fractional seconds are more precise
                 second = Decimal(groups["second"]).quantize(Decimal(".000001"))
