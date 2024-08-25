@@ -30,10 +30,15 @@ This module provides an ISO 8601:2004 time zone info parser.
 It offers a function to parse the time zone offset as specified by ISO 8601.
 """
 
+from __future__ import annotations
+
 import re
 
+from datetime import tzinfo
 from isodate.isoerror import ISO8601Error
 from isodate.tzinfo import UTC, ZERO, FixedOffset
+
+from typing import Literal
 
 TZ_REGEX = (
     r"(?P<tzname>(Z|(?P<tzsign>[+-])(?P<tzhour>[0-9]{2})(:?(?P<tzmin>[0-9]{2}))?)?)"
@@ -42,7 +47,7 @@ TZ_REGEX = (
 TZ_RE = re.compile(TZ_REGEX)
 
 
-def build_tzinfo(tzname, tzsign="+", tzhour=0, tzmin=0):
+def build_tzinfo(tzname: str | None, tzsign: Literal["+", "-"]="+", tzhour: int=0, tzmin: int=0) -> tzinfo:
     """
     create a tzinfo instance according to given parameters.
 
@@ -59,7 +64,7 @@ def build_tzinfo(tzname, tzsign="+", tzhour=0, tzmin=0):
     return FixedOffset(tzsign * tzhour, tzsign * tzmin, tzname)
 
 
-def parse_tzinfo(tzstring):
+def parse_tzinfo(tzstring: str) -> tzinfo:
     """
     Parses ISO 8601 time zone designators to tzinfo objecs.
 
@@ -82,7 +87,7 @@ def parse_tzinfo(tzstring):
     raise ISO8601Error("%s not a valid time zone info" % tzstring)
 
 
-def tz_isoformat(dt, format="%Z"):
+def tz_isoformat(dt: datetime, format: str="%Z") -> str:
     """
     return time zone offset ISO 8601 formatted.
     The various ISO formats can be chosen with the format parameter.
