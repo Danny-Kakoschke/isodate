@@ -5,7 +5,7 @@ All those classes are taken from the Python documentation.
 """
 
 import time
-from datetime import timedelta, tzinfo
+from datetime import datetime, timedelta, tzinfo
 
 ZERO = timedelta(0)
 # constant for zero time offset.
