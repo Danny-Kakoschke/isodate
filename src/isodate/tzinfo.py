@@ -49,7 +49,7 @@ UTC = Utc()
 # the default instance for UTC.
 
 
-def _Utc():
+def _Utc() -> type[UTC]:
     """
     Helper function for unpickling a Utc object.
     """
