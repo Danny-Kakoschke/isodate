@@ -35,7 +35,7 @@ conforming strings.
 """
 
 import re
-from datetime import date, timedelta
+from datetime import date, time, timedelta
 
 from isodate.duration import Duration
 from isodate.isotzinfo import tz_isoformat
@@ -118,14 +118,14 @@ STRF_D_MAP = {
 }
 
 
-def _strfduration(tdt, format, yeardigits=4):
+def _strfduration(tdt: Duration | timedelta, format: str, yeardigits: int=4) -> str:
     """
     this is the work method for timedelta and Duration instances.
 
     see strftime for more details.
     """
 
-    def repl(match):
+    def repl(match: re.Match) -> str:
         """
         lookup format command and return corresponding replacement.
         """
@@ -168,14 +168,14 @@ def _strfduration(tdt, format, yeardigits=4):
     return re.sub("%d|%f|%H|%m|%M|%S|%W|%Y|%C|%%|%P|%p", repl, format)
 
 
-def _strfdt(tdt, format, yeardigits=4):
+def _strfdt(tdt: date | time, format: str, yeardigits: int=4) -> str:
     """
     this is the work method for time and date instances.
 
     see strftime for more details.
     """
 
-    def repl(match):
+    def repl(match: re.Match) -> str:
         """
         lookup format command and return corresponding replacement.
         """
@@ -186,7 +186,7 @@ def _strfdt(tdt, format, yeardigits=4):
     return re.sub("%d|%f|%H|%j|%m|%M|%S|%w|%W|%Y|%C|%z|%Z|%h|%%", repl, format)
 
 
-def strftime(tdt, format, yeardigits=4):
+def strftime(tdt: Duration | timedelta, format: str, yeardigits: int=4) -> str:
     """Directive    Meaning    Notes
     %d    Day of the month as a decimal number [01,31].
     %f    Microsecond as a decimal number [0,999999], zero-padded
