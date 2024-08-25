@@ -143,7 +143,7 @@ class LocalTimezone(tzinfo):
         """
         return time.tzname[self._isdst(dt)]
 
-    def _isdst(self, dt: datetime | None) -> bool:
+    def _isdst(self, dt: datetime) -> bool:
         """
         Returns true if DST is active for given datetime object dt.
         """
