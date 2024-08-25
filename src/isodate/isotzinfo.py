@@ -47,7 +47,12 @@ TZ_REGEX = (
 TZ_RE = re.compile(TZ_REGEX)
 
 
-def build_tzinfo(tzname: str | None, tzsign: str | Literal["+", "-"]="+", tzhour: int=0, tzmin: int=0) -> tzinfo | None:
+def build_tzinfo(
+    tzname: str | None,
+    tzsign: str | Literal["+", "-"]="+",
+    tzhour: int=0, 
+    tzmin: int=0
+) -> tzinfo | None:
     """
     create a tzinfo instance according to given parameters.
 
@@ -101,7 +106,9 @@ def tz_isoformat(dt: datetime, format: str="%Z") -> str:
         %Z ... +-HH:MM
     """
     tzinfo = dt.tzinfo
-    if (tzinfo is None) or (tzinfo.utcoffset(dt) is None):
+    if tzinfo is None:
+        return ""
+    if tzinfo.utcoffset(dt) is None:
         return ""
     if tzinfo.utcoffset(dt) == ZERO and tzinfo.dst(dt) == ZERO:
         return "Z"
