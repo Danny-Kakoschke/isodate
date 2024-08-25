@@ -18,7 +18,7 @@ class Utc(tzinfo):
     Universal time coordinated time zone.
     """
 
-    def utcoffset(self, dt: datetime | None) -> tzinfo:
+    def utcoffset(self, dt: datetime | None) -> timedelta:
         """
         Return offset from UTC in minutes east of UTC, which is ZERO for UTC.
         """
@@ -31,7 +31,7 @@ class Utc(tzinfo):
         """
         return "UTC"
 
-    def dst(self, dt: datetime | None) -> tzinfo:
+    def dst(self, dt: datetime | None) -> timedelta:
         """
         Return the daylight saving time (DST) adjustment, in minutes east
         of UTC.
@@ -118,7 +118,7 @@ class LocalTimezone(tzinfo):
     A class capturing the platform's idea of local time.
     """
 
-    def utcoffset(self, dt: datetime) -> timedelta:
+    def utcoffset(self, dt: datetime | None) -> timedelta:
         """
         Return offset from UTC in minutes of UTC.
         """
@@ -127,7 +127,7 @@ class LocalTimezone(tzinfo):
         else:
             return STDOFFSET
 
-    def dst(self, dt: datetime) -> timedelta:
+    def dst(self, dt: datetime | None) -> timedelta:
         """
         Return daylight saving offset.
         """
@@ -136,14 +136,14 @@ class LocalTimezone(tzinfo):
         else:
             return ZERO
 
-    def tzname(self, dt: datetime) -> str:
+    def tzname(self, dt: datetime | None) -> str:
         """
         Return the time zone name corresponding to the datetime object dt, as a
         string.
         """
         return time.tzname[self._isdst(dt)]
 
-    def _isdst(self, dt: datetime) -> bool:
+    def _isdst(self, dt: datetime | None) -> bool:
         """
         Returns true if DST is active for given datetime object dt.
         """
