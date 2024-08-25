@@ -17,27 +17,27 @@ class Utc(tzinfo):
     Universal time coordinated time zone.
     """
 
-    def utcoffset(self, dt):
+    def utcoffset(self, dt: datetime):
         """
         Return offset from UTC in minutes east of UTC, which is ZERO for UTC.
         """
         return ZERO
 
-    def tzname(self, dt):
+    def tzname(self, dt: datetime):
         """
         Return the time zone name corresponding to the datetime object dt,
         as a string.
         """
         return "UTC"
 
-    def dst(self, dt):
+    def dst(self, dt: datetime):
         """
         Return the daylight saving time (DST) adjustment, in minutes east
         of UTC.
         """
         return ZERO
 
-    def __reduce__(self):
+    def __reduce__(self) -> tuple[Callable[[], UTC], tuple[()]]:
         """
         When unpickling a Utc object, return the default instance below, UTC.
         """
@@ -63,36 +63,36 @@ class FixedOffset(tzinfo):
     build a UTC tzinfo object.
     """
 
-    def __init__(self, offset_hours=0, offset_minutes=0, name="UTC"):
+    def __init__(self, offset_hours: int=0, offset_minutes: int=0, name: str="UTC") -> None:
         """
         Initialise an instance with time offset and name.
         The time offset should be positive for time zones east of UTC
         and negate for time zones west of UTC.
         """
-        self.__offset = timedelta(hours=offset_hours, minutes=offset_minutes)
-        self.__name = name
+        self.__offset: timedelta = timedelta(hours=offset_hours, minutes=offset_minutes)
+        self.__name: str = name
 
-    def utcoffset(self, dt):
+    def utcoffset(self, dt: datetime) -> timedelta:
         """
         Return offset from UTC in minutes of UTC.
         """
         return self.__offset
 
-    def tzname(self, dt):
+    def tzname(self, dt: datetime) -> str:
         """
         Return the time zone name corresponding to the datetime object dt, as a
         string.
         """
         return self.__name
 
-    def dst(self, dt):
+    def dst(self, dt: datetime) -> timedelta:
         """
         Return the daylight saving time (DST) adjustment, in minutes east of
         UTC.
         """
         return ZERO
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Return nicely formatted repr string.
         """
@@ -117,7 +117,7 @@ class LocalTimezone(tzinfo):
     A class capturing the platform's idea of local time.
     """
 
-    def utcoffset(self, dt):
+    def utcoffset(self, dt: datetime) -> timedelta:
         """
         Return offset from UTC in minutes of UTC.
         """
@@ -126,7 +126,7 @@ class LocalTimezone(tzinfo):
         else:
             return STDOFFSET
 
-    def dst(self, dt):
+    def dst(self, dt: datetime) -> timedelta:
         """
         Return daylight saving offset.
         """
@@ -135,14 +135,14 @@ class LocalTimezone(tzinfo):
         else:
             return ZERO
 
-    def tzname(self, dt):
+    def tzname(self, dt: datetime) -> str:
         """
         Return the time zone name corresponding to the datetime object dt, as a
         string.
         """
         return time.tzname[self._isdst(dt)]
 
-    def _isdst(self, dt):
+    def _isdst(self, dt: datetime) -> bool:
         """
         Returns true if DST is active for given datetime object dt.
         """
