@@ -18,20 +18,20 @@ class Utc(tzinfo):
     Universal time coordinated time zone.
     """
 
-    def utcoffset(self, dt: datetime | None):
+    def utcoffset(self, dt: datetime | None) -> tzinfo:
         """
         Return offset from UTC in minutes east of UTC, which is ZERO for UTC.
         """
         return ZERO
 
-    def tzname(self, dt: datetime | None):
+    def tzname(self, dt: datetime | None) -> str:
         """
         Return the time zone name corresponding to the datetime object dt,
         as a string.
         """
         return "UTC"
 
-    def dst(self, dt: datetime | None):
+    def dst(self, dt: datetime | None) -> tzinfo:
         """
         Return the daylight saving time (DST) adjustment, in minutes east
         of UTC.
@@ -49,7 +49,7 @@ UTC = Utc()
 # the default instance for UTC.
 
 
-def _Utc() -> type[UTC]:
+def _Utc() -> Utc:
     """
     Helper function for unpickling a Utc object.
     """
