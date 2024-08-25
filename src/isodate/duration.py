@@ -331,17 +331,17 @@ class Duration:
             return self.tdelta != other
         return True
 
-    def totimedelta(self, start: _DATET | None=None, end: _DATET | None=None):
+    def totimedelta(self, start: _DATET | None=None, end: _DATET | None=None) -> timedelta:
         """
         Convert this duration into a timedelta object.
 
         This method requires a start datetime or end datetimem, but raises
         an exception if both are given.
         """
+        if start and end is None:
+            return (start + self) - start
+        if end and start is None:
+            return end - (end - self)
         if start is None and end is None:
             raise ValueError("start or end required")
-        if start is not None and end is not None:
-            raise ValueError("only start or end allowed")
-        if start is not None:
-            return (start + self) - start
-        return end - (end - self)
+        raise ValueError("only start or end allowed")
