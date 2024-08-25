@@ -89,6 +89,7 @@ def parse_duration(datestring: str) -> Duration | timedelta:
         # try alternative format:
         if datestring.startswith("P"):
             durdt = parse_datetime(datestring[1:])
+            ret: Duration | timedelta
             if durdt.year != 0 or durdt.month != 0:
                 # create Duration
                 ret = Duration(
