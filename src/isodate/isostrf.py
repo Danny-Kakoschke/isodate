@@ -125,7 +125,7 @@ def _strfduration(tdt: Duration | timedelta, format: str, yeardigits: int=4) -> 
     see strftime for more details.
     """
 
-    def repl(match: re.Match) -> str:
+    def repl(match: re.Match[str]) -> str:
         """
         lookup format command and return corresponding replacement.
         """
