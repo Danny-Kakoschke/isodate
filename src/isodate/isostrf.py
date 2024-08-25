@@ -168,7 +168,7 @@ def _strfduration(tdt: Duration | timedelta, format: str, yeardigits: int=4) -> 
     return re.sub("%d|%f|%H|%m|%M|%S|%W|%Y|%C|%%|%P|%p", repl, format)
 
 
-def _strfdt(tdt: date | time, format: str, yeardigits: int=4) -> str:
+def _strfdt(tdt: date | time | datetime, format: str, yeardigits: int=4) -> str:
     """
     this is the work method for time and date instances.
 
@@ -186,7 +186,7 @@ def _strfdt(tdt: date | time, format: str, yeardigits: int=4) -> str:
     return re.sub("%d|%f|%H|%j|%m|%M|%S|%w|%W|%Y|%C|%z|%Z|%h|%%", repl, format)
 
 
-def strftime(tdt: Duration | timedelta, format: str, yeardigits: int=4) -> str:
+def strftime(tdt: Duration | timedelta | date | time | datetime, format: str, yeardigits: int=4) -> str:
     """Directive    Meaning    Notes
     %d    Day of the month as a decimal number [01,31].
     %f    Microsecond as a decimal number [0,999999], zero-padded
