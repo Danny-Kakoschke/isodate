@@ -32,14 +32,29 @@ used as limited replacement for timedelta objects.
 """
 
 from __future__ import annotations
-from datetime import timedelta, date, datetime
+
+from datetime import timedelta, date, datetime, tzinfo
 from decimal import ROUND_FLOOR, Decimal
-from typing import TYPE_CHECKING, TypeVar
+from typing import Protocol, TYPE_CHECKING, TypeVar, runtime_checkable
 
 if TYPE_CHECKING:
     from typing import Mapping
     _TEMPORALT = TypeVar("_TEMPORALT", "Duration", timedelta, date, datetime)
     _DATET = TypeVar("_DATET", date, datetime)
+
+@runtime_checkable
+class DateLike(Protocol):
+     year: int
+     month: int
+     day: int
+
+@runtime_checkable
+class DatetimeLike(Datelike, Protocol):
+     hour: int
+     minute: int
+     second: int
+     microsecond: int
+     tzinfo: tzinfo
 
 def fquotmod(val: Decimal, low: int, high: int) -> tuple[int, Decimal]:
     """
