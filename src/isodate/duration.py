@@ -42,19 +42,27 @@ if TYPE_CHECKING:
     _TEMPORALT = TypeVar("_TEMPORALT", "Duration", timedelta, date, datetime)
     _DATET = TypeVar("_DATET", date, datetime)
 
+
 @runtime_checkable
 class DateLike(Protocol):
      year: int
      month: int
      day: int
 
+
 @runtime_checkable
-class DatetimeLike(Datelike, Protocol):
+class TimeLike(Protocol):
      hour: int
      minute: int
      second: int
      microsecond: int
      tzinfo: tzinfo
+
+
+@runtime_checkable
+class DatetimeLike(DateLike, TimeLike, Protocol):
+ pass
+
 
 def fquotmod(val: Decimal, low: int, high: int) -> tuple[int, Decimal]:
     """
@@ -203,7 +211,7 @@ class Duration:
             )
             newduration.tdelta = self.tdelta + other.tdelta
             return newduration
-        if isinstance(other, (date, datetime)):
+        if isinstance(other, DateLike):
             # try anything that looks like a date or datetime
             # 'other' has attributes year, month, day
             # and relies on 'timedelta + other' being implemented
