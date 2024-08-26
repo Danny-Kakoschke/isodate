@@ -4,6 +4,8 @@ This module provides some datetime.tzinfo implementations.
 All those classes are taken from the Python documentation.
 """
 
+from __future__ import annotations
+
 import time
 from datetime import datetime, timedelta, tzinfo
 from typing import Callable
