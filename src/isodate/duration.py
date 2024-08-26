@@ -70,7 +70,7 @@ def max_days_in_month(year: Decimal | int, month: Decimal | int) -> int:
     return 28
 
 
-class Duration(timedelta):
+class Duration:
     """
     A class which represents a duration.
 
