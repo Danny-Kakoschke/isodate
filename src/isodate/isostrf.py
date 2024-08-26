@@ -34,6 +34,8 @@ pr-defined format strings in this module to make ease producing of ISO 8601
 conforming strings.
 """
 
+from __future__ import annotations
+
 import re
 from datetime import date, datetime, time, timedelta
 from typing import Callable
