@@ -49,6 +49,10 @@ class DateLike(Protocol):
      month: int
      day: int
 
+     def replace(
+      self, year: int = 0, month: int = 0, day: int = 0
+     ): ...
+
 
 @runtime_checkable
 class TimeLike(Protocol):
