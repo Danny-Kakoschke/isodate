@@ -108,11 +108,11 @@ def tz_isoformat(dt: datetime, format: str="%Z") -> str:
     tzinfo = dt.tzinfo
     if tzinfo is None:
         return ""
-    if tzinfo.utcoffset(dt) is None:
-        return ""
-    if tzinfo.utcoffset(dt) == ZERO and tzinfo.dst(dt) == ZERO:
-        return "Z"
     tdelta = tzinfo.utcoffset(dt)
+    if tdelta is None:
+        return ""
+    if tdelta == ZERO and tzinfo.dst(dt) == ZERO:
+        return "Z"
     seconds = tdelta.days * 24 * 60 * 60 + tdelta.seconds
     sign = ((seconds < 0) and "-") or "+"
     seconds = abs(seconds)
