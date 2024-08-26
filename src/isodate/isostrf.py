@@ -83,7 +83,7 @@ D_ALT_BAS = "P" + DATE_BAS_COMPLETE + "T" + TIME_BAS_COMPLETE
 D_ALT_EXT_ORD = "P" + DATE_EXT_ORD_COMPLETE + "T" + TIME_EXT_COMPLETE
 D_ALT_BAS_ORD = "P" + DATE_BAS_ORD_COMPLETE + "T" + TIME_BAS_COMPLETE
 
-STRF_DT_MAP: dict[str, Callable[[date | time | datetime, int], str]] = {
+STRF_DT_MAP: dict[str, Callable[[time, int], str] | Callable[[date, int], str] | Callable[[datetime, int], str]] = {
     "%d": lambda tdt, yds: "%02d" % tdt.day,
     "%f": lambda tdt, yds: "%06d" % tdt.microsecond,
     "%H": lambda tdt, yds: "%02d" % tdt.hour,
@@ -103,7 +103,7 @@ STRF_DT_MAP: dict[str, Callable[[date | time | datetime, int], str]] = {
     "%%": lambda tdt, yds: "%",
 }
 
-STRF_D_MAP: dict[str, Callable[[Duration | timedelta, int], str]]  = {
+STRF_D_MAP: dict[str, Callable[[Duration, int], str] | Callable[[timedelta, int], str]]  = {
     "%d": lambda tdt, yds: "%02d" % tdt.days,
     "%f": lambda tdt, yds: "%06d" % tdt.microseconds,
     "%H": lambda tdt, yds: "%02d" % (tdt.seconds / 60 / 60),
